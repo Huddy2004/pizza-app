@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Webpage</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'firstdjango/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{% url 'index' %}" class="navbar-brand">Hud's Pizzaro</a>
+
+        <!-- Hamburger Menu -->
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+        <!-- Navbar Links -->
+        <ul class="navbar-menu">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'order' %}">Order</a></li>
+            <li><a href="{% url 'previous_orders' %}">Previous Orders</a></li>
+            {% if user.is_authenticated %}
+                <li>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+
+        <!-- Right Side of Navbar (Basket) -->
+        <div class="navbar-right">
+            <a href="{% url 'basket' %}" class="basket">
+                🛒 Basket
+                {% if basket_count %}
+                    <span class="basket-count">{{ basket_count }}</span>
+                {% endif %}
+            </a>
+        </div>
+    </nav>
+
+    <!-- Placeholder for page-specific content -->
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2025 Hud's Pizzaro
+    </div>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.navbar-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+/* ---------- Register Page Styling ---------- */
+.register-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.register-container h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+    border-color: #c00;
+    outline: none;
+    box-shadow: 0 0 5px rgba(204, 0, 0, 0.2);
+}
+
+.register-btn {
+    width: 100%;
+    background-color: #c00;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.register-btn:hover {
+    background-color: #900;
+}
+
+.toggle-form {
+    font-size: 14px;
+    color: #555;
+    margin-top: 15px;
+}
+
+.toggle-form a {
+    color: #c00;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.toggle-form a:hover {
+    color: #900;
+    text-decoration: underline;
+}
+
+/* ---------- Login Page Styling ---------- */
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+    border-color: #c00;
+    outline: none;
+    box-shadow: 0 0 5px rgba(204, 0, 0, 0.2);
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #c00;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-btn:hover {
+    background-color: #900;
+}
+
+.toggle-form {
+    font-size: 14px;
+    color: #555;
+    margin-top: 15px;
+}
+
+.toggle-form a {
+    color: #c00;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.toggle-form a:hover {
+    color: #900;
+    text-decoration: underline;
+}
+
+/* Reset margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Navbar brand/logo */
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+/* Navbar items */
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-menu li {
+    display: inline-block;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    font-size: 16px;
+    padding: 8px 12px;
+}
+
+.navbar-menu a:hover {
+    color: #ffcc00;
+}
+
+/* Right-side basket */
+.navbar-right {
+    position: relative;
+}
+
+.basket {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    position: relative;
+}
+
+.basket-count {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Logout button */
+.logout-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+    color: #ffcc00;
+}
+
+/* Content wrapper */
+.content {
+    padding: 100px 20px 40px;
+    flex-grow: 1;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Mobile Navbar */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-menu li {
+        padding: 10px 0;
+    }
+
+    .navbar-right {
+        margin-top: 10px;
+    }
+}
+
+/* Previous Orders Page */
+.orders-container {
+    max-width: 800px;
+    margin: 80px auto 40px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Orders List */
+.orders-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Order Item */
+.order-item {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Order Summary (Collapsible) */
+.order-summary {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007BFF;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.order-summary:hover {
+    color: #0056b3;
+}
+
+/* Order Details (Initially Hidden) */
+.order-details {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Expand Details on Click */
+details[open] .order-details {
+    display: block;
+}
+
+/* Order Item Details */
+.order-item-detail {
+    font-size: 15px;
+    padding: 5px;
+}
+
+/* Toppings */
+.toppings-list {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* No Orders Message */
+.no-orders {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c00;
+    margin-top: 20px;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+    .orders-container {
+        width: 90%;
+    }
+}
+

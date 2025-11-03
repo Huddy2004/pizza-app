@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="orders-container">
+    <h2 class="section-title">Previous Orders</h2>
+
+    {% if orders %}
+        <ul class="orders-list">
+            {% for order in orders %}
+            <li class="order-item">
+                <p><strong>Order ID:</strong> {{ order.id }}</p>
+                <p><strong>Date:</strong> {{ order.created_at }}</p>
+                <p><strong>Total:</strong> €{{ order.total_price|floatformat:2 }}</p>
+
+                <details>
+                    <summary class="order-summary">View Order Details</summary>
+                    <ul class="order-details">
+                        {% for item in order.items.all %}  <!-- Use order.items.all -->
+                        <li class="order-item-detail">
+                            <p><strong>{{ item.name }}</strong></p>
+                            <p>Size: {{ item.size }}</p>
+                            <p>Base: {{ item.base }}</p>
+                            <p>Toppings: {{ item.toppings }}</p>
+                            <p>Price: €{{ item.price|floatformat:2 }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </details>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-orders">You have no previous orders.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

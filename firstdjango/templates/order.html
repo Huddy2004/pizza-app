@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="order-container" style="
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+">
+    <h2 class="section-title" style="
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+    ">Order Your Pizza</h2>
+
+    <!-- Pre-Made Pizzas Section -->
+    <div class="product-gallery" style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    ">
+        {% for product in products %}
+        <div class="product-card" style="
+            width: 280px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        ">
+            <img src="{% static product.image %}" alt="{{ product.name }}" class="product-image" style="
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 8px;
+            ">
+            <h3 style="margin: 10px 0; font-size: 18px;">{{ product.name }}</h3>
+            <p style="color: #777;">Price: €{{ product.price|floatformat:2 }}</p>
+
+            <form action="{% url 'add_to_basket' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="product_name" value="{{ product.name }}">
+                <input type="hidden" name="product_price" value="{{ product.price }}">
+                <button type="submit" class="btn" style="
+                    background-color: #c00;
+                    color: white;
+                    padding: 10px 15px;
+                    font-size: 16px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    transition: background-color 0.3s;
+                    width: 100%;
+                    border: none;
+                    cursor: pointer;
+                ">Add to Basket</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <hr class="section-divider" style="
+        width: 80%;
+        border: 1px solid #ddd;
+        margin: 40px auto;
+    ">
+
+    <!-- Custom Pizza Section -->
+    <div class="custom-pizza-section" style="
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    ">
+        <h2 style="font-size: 24px; color: #333;">Create Your Own Pizza</h2>
+        <p style="color: #555;">Customize your pizza by choosing size, crust, sauce, and toppings.</p>
+
+        <form action="{% url 'add_to_basket' %}" method="post">
+            {% csrf_token %}
+
+            <!-- Size Selection -->
+            <div class="form-group" style="margin-bottom: 15px; text-align: left;">
+                <label for="pizza_size" style="
+                    font-weight: bold;
+                    color: #333;
+                ">Choose Your Size:</label>
+                <select name="pizza_size" id="pizza_size" class="custom-select" style="
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                    font-size: 16px;
+                ">
+                    <option value="small" data-price="6.99">Small (€6.99)</option>
+                    <option value="medium" data-price="9.99">Medium (€9.99)</option>
+                    <option value="large" data-price="14.99">Large (€14.99)</option>
+                </select>
+            </div>
+
+            <!-- Crust Selection -->
+            <div class="form-group" style="margin-bottom: 15px; text-align: left;">
+                <label for="pizza_crust" style="
+                    font-weight: bold;
+                    color: #333;
+                ">Choose Your Crust:</label>
+                <select name="pizza_crust" id="pizza_crust" class="custom-select" style="
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                    font-size: 16px;
+                ">
+                    <option value="thin">Thin</option>
+                    <option value="regular">Regular</option>
+                    <option value="cheese_stuffed">Cheese Stuffed</option>
+                </select>
+            </div>
+
+            <!-- Sauce Selection -->
+            <div class="form-group" style="margin-bottom: 15px; text-align: left;">
+                <label for="pizza_sauce" style="
+                    font-weight: bold;
+                    color: #333;
+                ">Choose Your Sauce Base:</label>
+                <select name="pizza_sauce" id="pizza_sauce" class="custom-select" style="
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                    font-size: 16px;
+                ">
+                    <option value="tomato">Tomato</option>
+                    <option value="bbq">BBQ</option>
+                    <option value="garlic">Garlic</option>
+                </select>
+            </div>
+
+            <!-- Toppings Selection -->
+            <div class="form-group" style="margin-bottom: 15px; text-align: left;">
+                <label style="font-weight: bold; color: #333;">Select Toppings:</label>
+                <span class="note" style="color: #777; font-size: 14px;">(Up to 4 free; extra toppings €0.50 each)</span>
+                <div class="toppings-container" style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-top: 10px;
+                ">
+                    <label><input type="checkbox" name="toppings" value="pepperoni"> Pepperoni</label>
+                    <label><input type="checkbox" name="toppings" value="olives"> Olives</label>
+                    <label><input type="checkbox" name="toppings" value="tuna"> Tuna</label>
+                    <label><input type="checkbox" name="toppings" value="basil"> Basil</label>
+                    <label><input type="checkbox" name="toppings" value="chicken"> Chicken</label>
+                    <label><input type="checkbox" name="toppings" value="extra_cheese"> Extra Cheese</label>
+                </div>
+            </div>
+
+            <!-- Display Price -->
+            <p style="font-size: 20px; font-weight: bold; color: #c00;">Total Price: <span id="pizza-price">€6.99</span></p>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn custom-btn" style="
+                background-color: #c00;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s;
+                width: 100%;
+            ">Complete and Add to Basket</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sizeSelect = document.getElementById("pizza_size");
+        const toppings = document.querySelectorAll('input[name="toppings"]');
+        const priceDisplay = document.getElementById("pizza-price");
+
+        function updatePrice() {
+            let basePrice = parseFloat(sizeSelect.options[sizeSelect.selectedIndex].dataset.price);
+            let selectedToppings = Array.from(toppings).filter(t => t.checked).length;
+            let extraToppingsCost = Math.max(selectedToppings - 4, 0) * 0.50;
+            priceDisplay.textContent = "€" + (basePrice + extraToppingsCost).toFixed(2);
+        }
+
+        sizeSelect.addEventListener("change", updatePrice);
+        toppings.forEach(topping => topping.addEventListener("change", updatePrice));
+    });
+</script>
+
+{% endblock %}

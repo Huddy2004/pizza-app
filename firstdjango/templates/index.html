@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Center content */
+    .home-container {
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    /* Title Styling */
+    .home-container h1 {
+        font-size: 42px;
+        color: #2c3e50;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    /* Subtitle Styling */
+    .home-container p {
+        font-size: 20px;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    /* Pizza Gallery */
+    .pizza-gallery {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .pizza-gallery img {
+        width: 280px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .pizza-gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Order Now Button */
+    .btn {
+        display: inline-block;
+        background-color: #e74c3c;
+        color: white;
+        padding: 14px 22px;
+        font-size: 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #c0392b;
+    }
+</style>
+
+<div class="home-container">
+    <h1>Welcome to Hud's Pizzaro</h1>
+    <p>Experience the best pizzas in town!</p>
+    
+    <!-- Pizza Gallery -->
+    <div class="pizza-gallery">
+        <img src="{% static 'firstdjango/images/pizza1.jpg' %}" alt="Pizza 1">
+        <img src="{% static 'firstdjango/images/pizza2.jpg' %}" alt="Pizza 2">
+        <img src="{% static 'firstdjango/images/pizza3.jpg' %}" alt="Pizza 3">
+    </div>
+    
+    <!-- Order Now Button -->
+    <a href="{% url 'order' %}" class="btn">Order Now</a>
+</div>
+{% endblock %}
